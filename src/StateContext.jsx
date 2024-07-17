@@ -3,15 +3,18 @@ import { createContext, useState } from "react"
 export const StateContext = createContext()
 
 export const StateWrapper = ({ children }) => {
-  const [carCount, setCarCount] = useState(0)
+  const [cars, setCars] = useState([
+    {
+      make: "Subaru",
+      model: "Outback",
+      year: "2023",
+    },
+    { make: "Honda", model: "Odyssey", year: "2018" },
+  ])
   const [dealerCount, setDealerCount] = useState(0)
 
-  const addOneCar = () => {
-    setCarCount(carCount + 1)
-  }
-
-  const divideCarByTwo = () => {
-    setCarCount(Math.round(carCount / 2))
+  const addCar = (carObject) => {
+    setCars([...cars, carObject])
   }
 
   const addOneDealer = () => {
@@ -25,11 +28,10 @@ export const StateWrapper = ({ children }) => {
   return (
     <StateContext.Provider
       value={{
-        addOneCar,
-        divideCarByTwo,
+        addCar,
         addOneDealer,
         subtractFiveDealers,
-        carCount,
+        cars,
         dealerCount,
       }}
     >
@@ -37,4 +39,3 @@ export const StateWrapper = ({ children }) => {
     </StateContext.Provider>
   )
 }
-
