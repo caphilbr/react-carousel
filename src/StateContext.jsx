@@ -1,17 +1,24 @@
 import { createContext, useState } from "react"
 
-export const StateContext = createContext()
+export const dealerCountContext = createContext()
+export const carsContext = createContext()
 
 export const StateWrapper = ({ children }) => {
-  const [carCount, setCarCount] = useState(0)
+  const seedCars = [
+    {
+      id: 1,
+      make: "Subaru",
+      model: "Outback",
+      year: "2023",
+    },
+    { id: 2, make: "Honda", model: "Odyssey", year: "2018" },
+  ]
+  const [cars, setCars] = useState(seedCars)
   const [dealerCount, setDealerCount] = useState(0)
 
-  const addOneCar = () => {
-    setCarCount(carCount + 1)
-  }
-
-  const divideCarByTwo = () => {
-    setCarCount(Math.round(carCount / 2))
+  const addCar = (carObject) => {
+    const nextId = cars[cars.length - 1].id + 1
+    setCars([...cars, { ...carObject, id: nextId }])
   }
 
   const addOneDealer = () => {
@@ -23,18 +30,21 @@ export const StateWrapper = ({ children }) => {
   }
 
   return (
-    <StateContext.Provider
+    <dealerCountContext.Provider
       value={{
-        addOneCar,
-        divideCarByTwo,
         addOneDealer,
         subtractFiveDealers,
-        carCount,
         dealerCount,
       }}
     >
-      {children}
-    </StateContext.Provider>
+      <carsContext.Provider
+        value={{
+          addCar,
+          cars,
+        }}
+      >
+        {children}
+      </carsContext.Provider>
+    </dealerCountContext.Provider>
   )
 }
-
