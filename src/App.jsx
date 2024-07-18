@@ -1,6 +1,6 @@
-import "./App.css"
+import "./styling/App.css"
 import Sublevel1 from "./Sublevel1"
-import Button from "./Button"
+import Button from "./styling/Button"
 import { StateWrapper } from "./StateContext"
 import { useState } from "react"
 
@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <StateWrapper>
-      <h1>useContext & Styled-Components Examples</h1>
+      <h1>Examples: useContext, styled-components, React Hook Form</h1>
       <Button onClick={() => setShowLevelOne(!showLevelOne)}>
         Click here to toggle Level 1
       </Button>

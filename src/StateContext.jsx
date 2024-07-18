@@ -1,15 +1,17 @@
 import { createContext, useState } from "react"
 
-export const StateContext = createContext()
+export const dealerCountContext = createContext()
+export const carsContext = createContext()
 
 export const StateWrapper = ({ children }) => {
   const [cars, setCars] = useState([
     {
+      id: 1,
       make: "Subaru",
       model: "Outback",
       year: "2023",
     },
-    { make: "Honda", model: "Odyssey", year: "2018" },
+    { id: 2, make: "Honda", model: "Odyssey", year: "2018" },
   ])
   const [dealerCount, setDealerCount] = useState(0)
 
@@ -26,16 +28,21 @@ export const StateWrapper = ({ children }) => {
   }
 
   return (
-    <StateContext.Provider
+    <dealerCountContext.Provider
       value={{
-        addCar,
         addOneDealer,
         subtractFiveDealers,
-        cars,
         dealerCount,
       }}
     >
-      {children}
-    </StateContext.Provider>
+      <carsContext.Provider
+        value={{
+          addCar,
+          cars,
+        }}
+      >
+        {children}
+      </carsContext.Provider>
+    </dealerCountContext.Provider>
   )
 }

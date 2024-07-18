@@ -1,21 +1,24 @@
 import CarList from "./CarList"
-import SmallButton from "./SmallButton"
-import SmallButtonContainer from "./SmallButtonContainer"
-import { useContext } from "react"
-import { StateContext } from "./StateContext"
+import SmallButton from "./styling/SmallButton"
+import SmallButtonContainer from "./styling/SmallButtonContainer"
+import { useContext, useState } from "react"
+import { carsContext } from "./StateContext"
+import NewCarForm from "./NewCarForm"
 
 const Sublevel2 = () => {
-  const { addCar, cars } = useContext(StateContext)
+  const { cars } = useContext(carsContext)
+  const [showNewCarForm, setShowNewCarForm] = useState(false)
 
   return (
     <div className="bordered-component">
       <h3>Sublevel 2 - Cars</h3>
       <p>There are {cars.length} cars</p>
       <SmallButtonContainer>
-        <SmallButton>
+        <SmallButton onClick={() => setShowNewCarForm(true)}>
           Add New Car
         </SmallButton>
       </SmallButtonContainer>
+      {showNewCarForm && <NewCarForm setShowNewCarForm={setShowNewCarForm} />}
       <CarList />
     </div>
   )

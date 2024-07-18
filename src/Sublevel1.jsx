@@ -1,15 +1,15 @@
 import Sublevel2 from "./Sublevel2"
-import Button from "./Button"
-import SmallButton from "./SmallButton"
-import SmallButtonContainer from "./SmallButtonContainer"
+import Button from "./styling/Button"
+import SmallButton from "./styling/SmallButton"
+import SmallButtonContainer from "./styling/SmallButtonContainer"
 import { useState, useContext } from "react"
-import { StateContext } from "./StateContext"
+import { dealerCountContext } from "./StateContext"
 
 const Sublevel1 = () => {
   const [showLevel2, setShowLevel2] = useState(false)
 
   const { addOneDealer, subtractFiveDealers, dealerCount } =
-    useContext(StateContext)
+    useContext(dealerCountContext)
 
   return (
     <div className="bordered-component">

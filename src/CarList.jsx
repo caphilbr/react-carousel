@@ -1,15 +1,15 @@
 import { useContext } from "react"
-import { StateContext } from "./StateContext"
-import CarTile from "./CarTile"
+import { carsContext } from "./StateContext"
+import CarTile from "./styling/CarTile"
 
 const CarList = () => {
-  const { cars } = useContext(StateContext)
+  const { cars } = useContext(carsContext)
 
   return (
     <div>
       {cars.map((car) => {
         return (
-          <CarTile>
+          <CarTile key={car.id}>
             <p>Make: {car.make}</p>
             <p>Model: {car.model}</p>
             <p>Year: {car.year}</p>
