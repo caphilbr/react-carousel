@@ -4,7 +4,7 @@ export const dealerCountContext = createContext()
 export const carsContext = createContext()
 
 export const StateWrapper = ({ children }) => {
-  const [cars, setCars] = useState([
+  const seedCars = [
     {
       id: 1,
       make: "Subaru",
@@ -12,11 +12,13 @@ export const StateWrapper = ({ children }) => {
       year: "2023",
     },
     { id: 2, make: "Honda", model: "Odyssey", year: "2018" },
-  ])
+  ]
+  const [cars, setCars] = useState(seedCars)
   const [dealerCount, setDealerCount] = useState(0)
 
   const addCar = (carObject) => {
-    setCars([...cars, carObject])
+    const nextId = cars[cars.length - 1].id + 1
+    setCars([...cars, { ...carObject, id: nextId }])
   }
 
   const addOneDealer = () => {

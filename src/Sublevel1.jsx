@@ -13,7 +13,7 @@ const Sublevel1 = () => {
 
   return (
     <div className="bordered-component">
-      <h2>Sublevel 1 - Dealers</h2>
+      <h2>Sublevel 1 - Car Dealers</h2>
       <p>There are {dealerCount} dealers</p>
       <SmallButtonContainer>
         <SmallButton onClick={() => addOneDealer()}>Increase dealer count by 1</SmallButton>

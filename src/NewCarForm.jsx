@@ -72,9 +72,7 @@ const NewCarForm = (props) => {
       {errors.model && <p>{errors.model.message}</p>}
       {errors.year && <p>{errors.year.message}</p>}
       <div className="button-center">
-        <button type="submit">
-          <FormButton>Submit</FormButton>
-        </button>
+        <FormButton type="submit">Submit</FormButton>
         <FormButton onClick={() => props.setShowNewCarForm(false)}>
           Cancel
         </FormButton>
